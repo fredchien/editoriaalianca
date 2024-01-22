@@ -1,0 +1,367 @@
+/******************** ********************/
+
+/******************** IMPORTS ********************/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap');
+@import url("assets/css/bootstrap.min.css");
+
+// FUNCOES -=================///
+%center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+%right {
+  float: right;
+  margin: 0 0 0.5em 0.5em;
+}
+
+%left {
+  float: left;
+  margin: 0 0.5em 0.5em 0;
+}
+
+@mixin size($width, $height: $width) {
+  width: $width;
+  height: $height;
+}
+
+@mixin skin($color, $size) {
+  @extend %center;
+  background: $color;
+  height: $size;
+}
+
+@mixin trans($transition) {
+  transition: ease-in-out $transition;
+  -moz-transition: ease-in-out $transition;
+  -webkit-transition: ease-in-out $transition;
+  -o-transition: ease-in-out $transition;
+}
+
+/******************** VARS ********************/
+
+$white: #FFFFFF;
+$green : #95AD0D;
+$black: #000000;
+$blue: #53668D;
+$blueText: #1A2E3C;
+$grey: #ECF6F6;
+
+$text: #000D25;
+
+$Inter: 'Inter', sans-serif;
+
+$tTime: 0.2s;
+$tFunc: ease-in-out;
+
+
+/******************** MEDIA QUERIES ********************/
+
+$xs: 768px;
+$xs-special: 480px;
+$sm: 992px;
+$md: 1200px;
+
+$contSM: 750px;
+$contMD: 970px;
+$contLG: 1170px;
+
+$col-1-size: 8.33333333;
+
+@mixin xs {
+  @media (max-width: #{$xs - 1px}) {
+    @content;
+  }
+}
+
+@mixin xs-sm {
+  @media (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin xs-special {
+  @media (min-width: #{$xs-special}) and (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (min-width: #{$xs}) and (max-width: #{$sm - 1px}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (min-width: #{$sm}) and (max-width: #{$md - 1px}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (min-width: #{$md}) {
+    @content;
+  }
+}
+
+@function col-size($n, $cont-size) {
+  @return $n * $col-1-size * $cont-size / 100;
+}
+
+/******************** BASE ********************/
+
+* {
+  outline: transparent !important;
+}
+
+html {
+    scroll-behavior: smooth;
+  }
+  
+  ::-webkit-scrollbar {
+    width: 0.75vw;
+    background: #EFF4F8;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    background: $green;
+    border-radius: 5vw;
+  }
+
+html,
+body {
+  color: $text;
+  min-width: 320px;
+
+  font-family: $Roboto;
+  font-size: 16px;
+  line-height: 1.6;
+
+  background-color: $white;
+
+  font-smoothing: antialiased;
+}
+
+body {
+  background: $white;
+  overflow-x: hidden;
+  position: relative;
+}
+
+strong {
+  font-weight: 700;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 0;
+  margin-bottom: 30px;
+
+  font-family: $Inter;
+  font-weight: 700;
+  line-height: 1.4;
+
+  strong {
+    font-weight: 900;
+  }
+
+  small {
+    color: inherit;
+    font-size: 70%;
+    font-weight: inherit;
+  }
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+p:last-child {
+  margin-bottom: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none !important;
+
+  transition: background $tTime $tFunc, color $tTime $tFunc;
+
+  // &:active,
+  // &:focus,
+  // &:visited {
+  //   color: inherit;
+  // }
+
+  &:hover {
+    color: $green;
+  }
+
+}
+
+.w-60 {
+  width: 60% !important;
+}
+
+p{
+    color: $text;
+    font-size: 24px;
+    font-weight: 200;
+    line-height: 34px;
+}
+
+p, a, span, b, strong{
+  font-family: $Inter;
+}
+
+b, strong {
+  font-weight: bold !important;
+}
+
+/******************** CLASSES ********************/
+
+
+
+// fifths
+
+.col-xs-5ths,
+.col-sm-5ths,
+.col-md-5ths,
+.col-lg-5ths {
+  position: relative;
+  min-height: 1px;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+.col-xs-5ths {
+  width: 20%;
+  float: left;
+}
+
+@media (min-width: 768px) {
+  .col-sm-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 992px) {
+  .col-md-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+@media (min-width: 1200px) {
+  .col-lg-5ths {
+    width: 20%;
+    float: left;
+  }
+}
+
+///// figures /////
+
+figure.fit {
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+
+  width: 100%;
+  height: 0;
+
+  padding-bottom: 100%;
+
+  overflow: hidden;
+}
+
+
+
+@media (max-width: $sm) {
+  
+}
+@media (max-width: $xs-special) {
+  
+}
+
+
+@media (min-width: $sm) {
+  
+}
+
+
+/******************** MISC ********************/
+
+.btn-green{
+  background-color: $green;
+  border: solid 1px $green;
+  color: $greyBlack;
+  border-radius: 0px;
+  padding: 12px 30px;
+  margin: 25px;
+  transition: 0.7s;
+  &:hover{
+    background-color: $white;
+  }
+}
+
+
+
+/*==================== MENU ====================*/
+.sub-menu.open { left: 0%; transition: ease-in-out 0.5s; -moz-transition: ease-in-out 0.5s; -webkit-transition: ease-in-out 0.5s; -o-transition: ease-in-out 0.5s; background: #0F2B92; }
+.sub-menu { background: rgba(0, 0, 0, 0); width: 30%; display: flex; position: fixed; height: 100%; left: -30%; top: 0; z-index: 9; padding: 30px; transition: ease-in-out 0.5s; -moz-transition: ease-in-out 0.5s; -webkit-transition: ease-in-out 0.5s; -o-transition: ease-in-out 0.5s; }
+.sub-menu nav ul li { text-align: right; margin-bottom: 10px; display: block;}
+.sub-menu nav ul li h3 { color: #000; margin-bottom: 0px; font-size: 24px; font-weight: bold; }
+.sub-menu nav ul li h4 { margin-bottom: 15px; margin-top: 15px; }
+.sub-menu nav ul li h4 a { color: #000; font-size: 24px; }
+.sub-menu nav ul li a { font-size: 24px; color: #fff; display: block; text-align: justify;margin-bottom: 24px;}
+.sub-menu nav ul li a:hover { color: $green; transition: ease-in-out 0.2s; -moz-transition: ease-in-out 0.2s; -webkit-transition: ease-in-out 0.2s; -o-transition: ease-in-out 0.2s; }
+.sub-menu .link-phone { margin-top: 15px; color: #000; font-size: 26px; }
+@media (max-width: 992px) { .sub-menu { width: 100%; left: -100%; } }
+@media (max-width: 480px) { .sub-menu { width: 100%; left: -100%; } }
+#menu-toggle { display: none; color: white; background-color: $green; text-transform: uppercase;border-radius: 5px; height: 50px; width: 50px; align-items: center; border: 0; font-size: 15px; outline: transparent !important; transition: color 0.6s ease-in-out; justify-content: center;position: relative; }
+#menu-toggle .icon-bars { background: white; display: inline-block; height: 3px; width: 20px; position: relative; transition: background 0.6s ease-in-out 0s; }
+#menu-toggle .icon-bars:before, #menu-toggle .icon-bars:after { content: ""; background: white; position: absolute; right: 0; height: 3px; transition-property: top, bottom, width, transform, background; transition-duration: 0.3s, 0.3s, 0.3s, 0.3s, 0.6s; transition-delay: 0.3s, 0.3s, 0.3s, 0s, 0s; transition-timing-function: ease-in-out, ease-in-out, ease-in-out; }
+#menu-toggle .icon-bars:before { width: 20px; top: -6px; }
+#menu-toggle .icon-bars:after { width: 20px; bottom: -6px; }
+div.open #menu-toggle { color: red; }
+.open #menu-toggle .icon-bars { background: transparent !important; }
+.open #menu-toggle .icon-bars:before { background: #fff; top: 0; width: 20px; transform: rotate(45deg); transition-delay: 0s, 0s, 0s, 0.3s; }
+.open #menu-toggle .icon-bars:after { background: #fff; bottom: 0; transform: rotate(-45deg); transition-delay: 0s, 0s, 0s, 0.3s; }
+
+
+
+/******************** HEADER  ********************/
+
+/******************** RESPONSIVE ********************/
+
+@include xs {
+ 
+}
+
+@include xs-special {
+  
+}
+
+@include sm {
+    
+}
+
+@include md {
+  
+  
+}
+
+@include lg {
+  
+}
+
